@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Simple House Template</title>
+    <title>Group Eleven Template</title>
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans:400"
       rel="stylesheet" />
-    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" /><link href="css/all.min.css" rel="stylesheet" />
+    <link href="css/brands.min.css" rel="stylesheet" />
+    <link href="css/fontawesome.min.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -28,7 +30,7 @@
                   alt="Logo"
                   class="tm-site-logo" />
                 <div class="tm-site-text-box">
-                  <h1 class="tm-site-title">Simple House</h1>
+                  <h1 class="tm-site-title">Group Eleven</h1>
                   <h6 class="tm-site-description">new restaurant</h6>
                 </div>
               </div>
@@ -38,10 +40,13 @@
                     <a href="index.html" class="tm-nav-link active">Home</a>
                   </li>
                   <li class="tm-nav-li">
-                    <a href="about.html" class="tm-nav-link">About</a>
+                    <a href="about.php" class="tm-nav-link">About</a>
                   </li>
                   <li class="tm-nav-li">
-                    <a href="contact.html" class="tm-nav-link">Contact</a>
+                    <a href="contact.php" class="tm-nav-link">Contact</a>
+                  </li>
+                  <li class="tm-nav-li">
+                    <a href="reserve.php" class="tm-nav-link">Reservations</a>
                   </li>
                 </ul>
               </nav>
@@ -53,8 +58,8 @@
       <main>
         <header class="row tm-welcome-section">
           <h2 class="col-12 text-center tm-section-title">
-            Welcome to Simple House
-          </h2>
+            Welcome to Group Eleven
+          
           <p class="col-12 text-center">
             Join us on a gastronomic adventure and discover why Delicious Eats
             is more than just a restaurant—it's a destination for food lovers,
@@ -62,6 +67,35 @@
             invite you to savor the moment and indulge in the flavors of life.
             Bon appétit!
           </p>
+          </h2><button id="openModalBtn">Open Modal</button>
+
+<div id="myModal" class="modal">
+  <div class="modal-content ">
+    <span class="close">&times;</span> 
+    <div class="col-md-6"><form id="reservationForm" action="" method="post" class="tm-contact-form">
+      <h2 class="tm-info-title tm-text-success">Book Reservation</h2>
+      <div class="form-group">
+      <input type="text" id="fullName" name="fullName" placeholder="Full Name" required class="form-control" /></div>
+      <div class="form-group">
+      <input type="email" id="email" name="email" placeholder="Email" required class="form-control" /></div>
+      <div class="form-group">
+      <input type="tel" id="phone" name="phone" placeholder="Phone Number" required class="form-control" /></div>
+      <div class="form-group">
+      <input type="date" id="date" name="date" required class="form-control" /></div>
+      <div class="form-group">
+      <input type="time" id="time" name="time" required class="form-control" /></div>
+      <div class="form-group">
+      <input id="message" name="message" placeholder="Additional Message" class="form-control" /></div>
+      <div class="form-group tm-d-flex">
+      <button id="loginBtn" type="submit" class="tm-btn tm-btn-success tm-btn-left">Book Now!!</button>
+    </div>
+    </form>
+  </div>
+    
+              </div>
+            </div>
+  </div>
+</div>
         </header>
 
         <div class="tm-paging-links">
@@ -426,19 +460,24 @@
             </div>
             <div class="col-md-6">
               <div class="tm-description-box">
-                <h4 class="tm-gallery-title">Maecenas nulla neque</h4>
+                <h4 class="tm-gallery-title">Your order is Ready</h4>
                 <p class="tm-mb-45">
-                  Redistributing this template as a downloadable ZIP file on any
-                  template collection site is strictly prohibited. You will need
-                  to
-                  <a rel="nofollow" href="https://templatemo.com/contact"
-                    >talk to us</a
-                  >
-                  for additional permissions about our templates. Thank you.
+                  Continue to pay to get your order Processed
+                  
                 </p>
-                <a href="about.html" class="tm-btn tm-btn-default tm-right"
-                  >Read More</a
-                >
+                <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+  <div>
+  <input type="hidden" name="public_key" value="FLWPUBK_TEST-02b9b5fc6406bd4a41c3ff141cc45e93-X" />
+  <input type="hidden" name="customer[email]" value="test@mailnator.com" />
+  <input type="hidden" name="customer[name]" value="Ayomide Jimi-Oni" />
+  <input type="hidden" name="tx_ref" value="txref-81123" />
+  <input type="hidden" name="amount" value="200" />
+  <input type="hidden" name="currency" value="UGX" />
+  <input type="hidden" name="meta[source]" value="docs-html-test" />
+  <br>
+  <button type="submit" id="start-payment-button" class="tm-btn tm-btn-default tm-right">Pay Now</button>
+</form>
+</div>
               </div>
             </div>
           </div>
@@ -447,7 +486,7 @@
 
       <footer class="tm-footer text-center">
         <p>
-          Copyright &copy; 2020 Simple House | Design:
+          Copyright &copy; 2020 Group Eleven | Assignment by:
           <a
             rel="nofollow"
             href="https://github.com/kaggwe-marvin/jubilant-dollop"
@@ -456,30 +495,9 @@
         </p>
       </footer>
     </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Handle click on paging links
-        var pagingLinks = document.querySelectorAll(".tm-paging-link");
-        pagingLinks.forEach(function (link) {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            var page = this.textContent.toLowerCase();
-            var galleryPages = document.querySelectorAll(".tm-gallery-page");
-            galleryPages.forEach(function (page) {
-              page.classList.add("hidden");
-            });
-            document
-              .querySelector("#tm-gallery-page-" + page)
-              .classList.remove("hidden");
-
-            pagingLinks.forEach(function (link) {
-              link.classList.remove("active");
-            });
-            this.classList.add("active");
-          });
-        });
-      });
-    </script>
+    <?php include 'php/addReservations.php'; ?>
+    <script src="js/modal.js"></script>
+    <script src="js/pagination.js"></script>
+    
   </body>
 </html>
